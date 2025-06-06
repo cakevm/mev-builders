@@ -1,0 +1,9 @@
+[licenses]
+allow = [
+  # permissive licenses
+  "Apache-2.0",
+  "MIT",
+]
+
+[bans]
+multiple-versions = "allow"

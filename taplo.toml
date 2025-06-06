@@ -1,0 +1,18 @@
+include = ["Cargo.toml", "deny.toml", "taplo.toml"]
+
+[formatting]
+align_comments = false
+allowed_blank_lines = 2
+array_trailing_comma = true
+column_width = 140
+compact_arrays = true
+reorder_arrays = true
+reorder_keys = true
+
+[[rule]]
+# Do not reorder to keep name and version on top
+formatting = { reorder_keys = false }
+keys = ["package"]
+
+[[rule]]
+keys = ["build-dependencies", "dependencies", "dev-dependencies", "package"]
