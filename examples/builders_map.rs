@@ -6,12 +6,12 @@ use std::sync::LazyLock;
 static BUILDERS_MAP: LazyLock<HashMap<&str, &Builder>> = LazyLock::new(|| {
     let mut builders = HashMap::new();
     for builder in mev_builders::BUILDERS.iter() {
-        builders.insert(builder.name, builder);
+        builders.insert(builder.identifier, builder);
     }
     builders
 });
 
 fn main() {
-    // Access builder by name
-    println!("Flashbots RPC URL: {}", BUILDERS_MAP.get("Flashbots").map_or("Not found", |b| b.searcher_rpc));
+    // Access builder by identifier
+    println!("Flashbots RPC URL: {}", BUILDERS_MAP.get("flashbots").map_or("Not found", |b| b.searcher_rpc));
 }
