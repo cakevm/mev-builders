@@ -2,17 +2,6 @@ use crate::{Builder, Signing};
 
 /// List of known builders with their details, ordered by block production.
 pub static BUILDERS: &[Builder] = &[
-    // Blocks: 12,121
-    Builder {
-        name: "Beaver Build",
-        identifier: "beaverbuild",
-        website: "https://beaverbuild.org",
-        searcher_rpc: "https://rpc.beaverbuild.org",
-        mev_share_rpc: Some("https://mevshare-rpc.beaverbuild.org"),
-        extra_data: Some("beaverbuild.org"),
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
     // Blocks: 22,454
     Builder {
         name: "Titan Builder",
@@ -22,6 +11,17 @@ pub static BUILDERS: &[Builder] = &[
         mev_share_rpc: Some("https://rpc.titanbuilder.xyz"),
         extra_data: Some("Titan (titanbuilder.xyz)"),
         signing: Signing::Optional,
+        account_required: false,
+    },
+    // Blocks: 12,121
+    Builder {
+        name: "Beaver Build",
+        identifier: "beaverbuild",
+        website: "https://beaverbuild.org",
+        searcher_rpc: "https://rpc.beaverbuild.org",
+        mev_share_rpc: Some("https://mevshare-rpc.beaverbuild.org"),
+        extra_data: Some("beaverbuild.org"),
+        signing: Signing::NotSupported,
         account_required: false,
     },
     // Blocks: 8,080
@@ -148,126 +148,4 @@ pub static BUILDERS: &[Builder] = &[
 ];
 
 /// Other builders without recent block production data.
-pub static OTHER_BUILDERS: &[Builder] = &[
-    // No recent block data
-    Builder {
-        name: "Builder0x69",
-        identifier: "builder0x69",
-        website: "https://builder0x69.io",
-        searcher_rpc: "https://builder0x69.io",
-        mev_share_rpc: Some("https://builder0x69.io"),
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "ETH builder",
-        identifier: "blockscout",
-        website: "https://eth-builder.com",
-        searcher_rpc: "https://eth-builder.com",
-        mev_share_rpc: None,
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "EigenPhi",
-        identifier: "eigenphi",
-        website: "https://eigenphi.io",
-        searcher_rpc: "https://builder.eigenphi.io",
-        mev_share_rpc: Some("https://builder.eigenphi.io"),
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "Gigabuilder",
-        identifier: "gigabuilder",
-        website: "https://gigabuilder.io",
-        searcher_rpc: "https://rpc.gigabuilder.io",
-        mev_share_rpc: None,
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "Gmbit Builder",
-        identifier: "gmbit",
-        website: "https://gmbit.co",
-        searcher_rpc: "https://builder.gmbit.co/rpc",
-        mev_share_rpc: Some("https://builder.gmbit.co"),
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "JetBuilder",
-        identifier: "jetbuilder",
-        website: "https://jetbuilder.xyz",
-        searcher_rpc: "https://rpc.mevshare.jetbldr.xyz",
-        mev_share_rpc: None,
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "Payload",
-        identifier: "payload",
-        website: "https://payload.de",
-        searcher_rpc: "https://rpc.payload.de",
-        mev_share_rpc: Some("https://rpc.payload.de"),
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "Penguinbuild",
-        identifier: "penguinbuild",
-        website: "https://penguinbuild.org/",
-        searcher_rpc: "https://rpc.penguinbuild.org",
-        mev_share_rpc: Some("https://rpc.penguinbuild.org"),
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "SmithBot",
-        identifier: "smithbot",
-        website: "https://smithbot.xyz",
-        searcher_rpc: "https://smithbot.xyz",
-        mev_share_rpc: None,
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "n!",
-        identifier: "blocknative",
-        website: "https://nfactorial.xyz",
-        searcher_rpc: "https://nfactorial.xyz",
-        mev_share_rpc: None,
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "tbuilder",
-        identifier: "tbuilder",
-        website: "https://tbuilder.xyz",
-        searcher_rpc: "https://rpc.tbuilder.xyz",
-        mev_share_rpc: Some("https://flashbots.rpc.tbuilder.xyz"),
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-];
+pub static OTHER_BUILDERS: &[Builder] = &[];
