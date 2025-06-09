@@ -215,15 +215,25 @@ def main():
     print()
 
     print("Matched builders:")
+    matched = {}
     for builder, count in matched_builders:
         extra_data = builder.get('extra_data', 'None')
         print(f"  ✓ {builder['name']} ({extra_data}): {count:,} blocks")
+        matched[extra_data] = count
 
     if unmatched_builders:
         print(f"\nUnmatched builders (will be placed after matched builders):")
         for builder, count in unmatched_builders:
             extra_data = builder.get('extra_data', 'None')
             print(f"  ✗ {builder['name']} ({extra_data}): No match")
+
+    # Those would be duplicates
+    accepted = ["BuilderNet (Beaver)", "BuilderNet (Nethermind)", "@rsyncbuilder"]
+    # Check for any builders in aggregated data that were not matched
+    print(f"\nBuilders in aggregated data that were not found in builders.rs:")
+    for builder_name in aggregated_data.keys():
+        if builder_name not in matched and builder_name not in accepted:
+            print(f"  ✗ '{builder_name}'")
 
     # Generate reordered code
     print(f"\nGenerating reordered Rust code...")

@@ -145,6 +145,17 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
+    // Blocks: 2
+    Builder {
+        name: "Gigabuilder",
+        identifier: "gigabuilder",
+        website: "https://gigabuilder.io",
+        searcher_rpc: "https://rpc.gigabuilder.io",
+        mev_share_rpc: None,
+        extra_data: Some("gigabuilder.io"),
+        signing: Signing::NotSupported,
+        account_required: false,
+    },
 ];
 
 /// Other builders without recent block production data.
@@ -178,17 +189,6 @@ pub static OTHER_BUILDERS: &[Builder] = &[
         website: "https://eigenphi.io",
         searcher_rpc: "https://builder.eigenphi.io",
         mev_share_rpc: Some("https://builder.eigenphi.io"),
-        extra_data: None,
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // No recent block data
-    Builder {
-        name: "Gigabuilder",
-        identifier: "gigabuilder",
-        website: "https://gigabuilder.io",
-        searcher_rpc: "https://rpc.gigabuilder.io",
-        mev_share_rpc: None,
         extra_data: None,
         signing: Signing::NotSupported,
         account_required: false,
