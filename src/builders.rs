@@ -2,17 +2,6 @@ use crate::{Builder, Signing};
 
 /// List of known builders with their details, ordered by block production.
 pub static BUILDERS: &[Builder] = &[
-    // Blocks: 12,121
-    Builder {
-        name: "Beaver Build",
-        identifier: "beaverbuild",
-        website: "https://beaverbuild.org",
-        searcher_rpc: "https://rpc.beaverbuild.org",
-        mev_share_rpc: Some("https://mevshare-rpc.beaverbuild.org"),
-        extra_data: Some("beaverbuild.org"),
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
     // Blocks: 22,454
     Builder {
         name: "Titan Builder",
@@ -22,6 +11,17 @@ pub static BUILDERS: &[Builder] = &[
         mev_share_rpc: Some("https://rpc.titanbuilder.xyz"),
         extra_data: Some("Titan (titanbuilder.xyz)"),
         signing: Signing::Optional,
+        account_required: false,
+    },
+    // Blocks: 12,121
+    Builder {
+        name: "Beaver Build",
+        identifier: "beaverbuild",
+        website: "https://beaverbuild.org",
+        searcher_rpc: "https://rpc.beaverbuild.org",
+        mev_share_rpc: Some("https://mevshare-rpc.beaverbuild.org"),
+        extra_data: Some("beaverbuild.org"),
+        signing: Signing::NotSupported,
         account_required: false,
     },
     // Blocks: 8,080
