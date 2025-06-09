@@ -44,6 +44,10 @@ jobs:
       - name: Format Rust code
         run: cargo fmt
 
+      - name: Clean up temporary files
+        run: |
+          rm -f builder_aggregated.json
+
       - name: Check for changes
         id: check_changes
         run: |
@@ -75,7 +79,9 @@ jobs:
           commit-message: "chore: weekly builder order update"
           title: "chore: weekly builder order update"
           body: |
+            ```
             ${{ steps.aggregate_stats.outputs.stats_output }}
+            ```
           branch: weekly-builder-order-update
           delete-branch: true
           base: main

@@ -24,18 +24,10 @@ def parse_rust_builders(filename: str) -> List[Dict]:
     """Parse the Rust source file to extract BUILDERS array"""
     try:
         with open(filename, 'r') as f:
-            content = f.read()
+            builders_content = f.read()
     except FileNotFoundError:
         print(f"Error: {filename} not found")
         return []
-
-    # Find the BUILDERS array
-    builders_match = re.search(r'pub static BUILDERS: &\[Builder\] = &\[(.*?)\];', content, re.DOTALL)
-    if not builders_match:
-        print("Error: Could not find BUILDERS array in source file")
-        return []
-
-    builders_content = builders_match.group(1)
 
     # Parse individual builders
     builders = []
