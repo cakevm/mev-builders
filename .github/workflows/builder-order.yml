@@ -46,7 +46,8 @@ jobs:
 
       - name: Clean up temporary files
         run: |
-          rm -f builder_aggregated.json
+          cd .github/scripts
+          rm -f builder_aggregated.json stats_output.txt
 
       - name: Check for changes
         id: check_changes
