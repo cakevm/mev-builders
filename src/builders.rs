@@ -65,7 +65,7 @@ pub static BUILDERS: &[Builder] = &[
         searcher_rpc: "https://rpc.btcs.com",
         mev_share_rpc: Some("https://flashbots.btcs.com"),
         extra_data: Some("Builder+ www.btcs.com/builder"),
-        signing: Signing::Optional,
+        signing: Signing::NotSupported,
         account_required: false,
     },
     // Blocks: 797
@@ -98,14 +98,14 @@ pub static BUILDERS: &[Builder] = &[
         searcher_rpc: "https://blockbeelder.com/rpc",
         mev_share_rpc: Some("https://blockbeelder.com/rpc"),
         extra_data: Some("https://blockbeelder.com"),
-        signing: Signing::Optional,
+        signing: Signing::NotSupported,
         account_required: false,
     },
     // Blocks: 18
     Builder {
         name: "Boba Builder",
         identifier: "bobabuilder",
-        website: "https://blockscout.com",
+        website: "https://boba-builder.com",
         searcher_rpc: "https://boba-builder.com/searcher",
         mev_share_rpc: Some("https://boba-builder.com/searcher/bundle"),
         extra_data: Some("boba-builder.com"),
@@ -143,7 +143,7 @@ pub static BUILDERS: &[Builder] = &[
         mev_share_rpc: Some("https://rpc-builder.blxrbdn.com"),
         extra_data: Some("Powered by bloXroute"),
         signing: Signing::NotSupported,
-        account_required: false,
+        account_required: true,
     },
     // Blocks: 2
     Builder {
@@ -251,7 +251,7 @@ pub static OTHER_BUILDERS: &[Builder] = &[
     // No recent block data
     Builder {
         name: "n!",
-        identifier: "blocknative",
+        identifier: "nfactorial",
         website: "https://nfactorial.xyz",
         searcher_rpc: "https://nfactorial.xyz",
         mev_share_rpc: None,
