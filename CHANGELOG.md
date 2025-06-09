@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2]
+- Add fn's to access signing requirements for a builder
+
 ## [0.1.1](https://github.com/cakevm/mev-builders/releases/tag/v0.1.1) - 2025-06-16
 - Fix data issues for several builders
 

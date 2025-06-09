@@ -14,6 +14,21 @@ pub enum Signing {
     NotSupported,
 }
 
+impl Signing {
+    /// Returns true if the builder requires signing for bundles.
+    pub const fn is_required(&self) -> bool {
+        matches!(self, Signing::Required)
+    }
+    /// Returns true if the builder supports signing, but it is optional.
+    pub fn is_optional(&self) -> bool {
+        matches!(self, Signing::Optional)
+    }
+    /// Returns true if the builder does not support signing.
+    pub fn is_not_supported(&self) -> bool {
+        matches!(self, Signing::NotSupported)
+    }
+}
+
 /// Represents a builder with its details.
 pub struct Builder<'a> {
     /// Human-readable name of the builder.
