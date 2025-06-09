@@ -39,14 +39,17 @@ jobs:
       - name: Run code generation script
         run: |
           cd .github/scripts
-          python gen_code.py
+          python gen_code.py  > ../../gen_code_output.txt
+          echo "gen_code_output<<EOF" >> $GITHUB_OUTPUT
+          cat ../../gen_code_output.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Format Rust code
         run: cargo fmt
 
       - name: Clean up temporary files
         run: |
-          rm -f stats_output.txt
+          rm -f stats_output.txt gen_code_output.txt
           rm -f .github/scripts/builder_aggregated.json
 
       - name: Check for changes
@@ -82,6 +85,7 @@ jobs:
           body: |
             ```
             ${{ steps.aggregate_stats.outputs.stats_output }}
+            ${{ steps.gen_code.outputs.gen_code_output }}
             ```
           branch: weekly-builder-order-update
           delete-branch: true
