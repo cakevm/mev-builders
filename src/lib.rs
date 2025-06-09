@@ -49,6 +49,15 @@ pub struct Builder<'a> {
     pub account_required: bool,
 }
 
+impl<'a> Builder<'a> {
+    /// Requires special handling for the builder.
+    pub fn requires_extra_handling(&self) -> bool {
+        // buildernet: requires custom cert or insecure connection. See: https://buildernet.org/docs/api#example-request-
+        // bloxroute: requires an account to use the RPC.
+        matches!(self.identifier, "buildernet" | "bloxroute")
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

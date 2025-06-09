@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.2]
+## [0.1.3](https://github.com/cakevm/mev-builders/releases/tag/v0.1.3) - 2025-06-16
+- Add fn to check if a builder requires extra handling
+- Move BuilderNet and bloXroute to `OTHER_BUILDERS` list
+
+## [0.1.2](https://github.com/cakevm/mev-builders/releases/tag/v0.1.2) - 2025-06-16
 - Add fn's to access signing requirements for a builder
 
 ## [0.1.1](https://github.com/cakevm/mev-builders/releases/tag/v0.1.1) - 2025-06-16

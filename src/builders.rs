@@ -1,6 +1,6 @@
 use crate::{Builder, Signing};
 
-/// List of known builders with their details, ordered by block production.
+/// List of known builders with their details, ordered by landed blocks.
 pub static BUILDERS: &[Builder] = &[
     // Blocks: 22,454
     Builder {
@@ -22,17 +22,6 @@ pub static BUILDERS: &[Builder] = &[
         mev_share_rpc: Some("https://mevshare-rpc.beaverbuild.org"),
         extra_data: Some("beaverbuild.org"),
         signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // Blocks: 8,080
-    Builder {
-        name: "BuilderNet",
-        identifier: "buildernet",
-        website: "https://buildernet.org",
-        searcher_rpc: "https://direct-us.buildernet.org",
-        mev_share_rpc: None,
-        extra_data: Some("BuilderNet"),
-        signing: Signing::Required,
         account_required: false,
     },
     // Blocks: 4,336
@@ -134,17 +123,6 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 8
-    Builder {
-        name: "bloXroute",
-        identifier: "bloxroute",
-        website: "https://bloxroute.com",
-        searcher_rpc: "https://mev.api.blxrbdn.com",
-        mev_share_rpc: Some("https://rpc-builder.blxrbdn.com"),
-        extra_data: Some("Powered by bloXroute"),
-        signing: Signing::NotSupported,
-        account_required: true,
-    },
     // Blocks: 2
     Builder {
         name: "Gigabuilder",
@@ -158,8 +136,30 @@ pub static BUILDERS: &[Builder] = &[
     },
 ];
 
-/// Other builders without recent block production data.
+/// Other builders without recent landed blocks or special requirements.
 pub static OTHER_BUILDERS: &[Builder] = &[
+    // Blocks: 8,080
+    Builder {
+        name: "BuilderNet",
+        identifier: "buildernet",
+        website: "https://buildernet.org",
+        searcher_rpc: "https://direct-us.buildernet.org",
+        mev_share_rpc: None,
+        extra_data: Some("BuilderNet"),
+        signing: Signing::Required,
+        account_required: false,
+    },
+    // Blocks: 8
+    Builder {
+        name: "bloXroute",
+        identifier: "bloxroute",
+        website: "https://bloxroute.com",
+        searcher_rpc: "https://mev.api.blxrbdn.com",
+        mev_share_rpc: Some("https://rpc-builder.blxrbdn.com"),
+        extra_data: Some("Powered by bloXroute"),
+        signing: Signing::NotSupported,
+        account_required: true,
+    },
     // No recent block data
     Builder {
         name: "Builder0x69",

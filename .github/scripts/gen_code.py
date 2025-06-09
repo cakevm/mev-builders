@@ -147,20 +147,20 @@ def reorder_builders(builders: List[Dict], aggregated_data: Dict[str, int]) -> L
 
 def generate_reordered_rust_code(builders_with_counts: List[Tuple[Dict, int]]) -> str:
     """Generate the complete Rust file with imports, BUILDERS and OTHER_BUILDERS arrays"""
+
+    # Builders that can not be accessed by standard RPCs or have special requirements
+    special_builders = {"BuilderNet", "bloXroute"}
+
     # Separate builders with and without matches
-    matched_builders = [(builder, count) for builder, count in builders_with_counts if count > 0]
-    unmatched_builders = [(builder, count) for builder, count in builders_with_counts if count == 0]
+    matched_builders = [(builder, count) for builder, count in builders_with_counts if count > 0 and (builder['name'].strip() not in special_builders)]
+    unmatched_builders = [(builder, count) for builder, count in builders_with_counts if count == 0 or builder['name'].strip() in special_builders]
 
-    lines = []
 
-    # Add imports
-    lines.append("use crate::{Builder, Signing};")
-    lines.append("")
+    lines = ["use crate::{Builder, Signing};", "",
+             "/// List of known builders with their details, ordered by landed blocks.",
+             "pub static BUILDERS: &[Builder] = &["]
 
     # Generate BUILDERS array (matched builders only)
-    lines.append("/// List of known builders with their details, ordered by block production.")
-    lines.append("pub static BUILDERS: &[Builder] = &[")
-
     for builder, count in matched_builders:
         lines.append(f"    // Blocks: {count:,}")
         lines.append(format_rust_builder(builder))
@@ -169,11 +169,14 @@ def generate_reordered_rust_code(builders_with_counts: List[Tuple[Dict, int]]) -
     lines.append("")
 
     # Generate OTHER_BUILDERS array (unmatched builders)
-    lines.append("/// Other builders without recent block production data.")
+    lines.append("/// Other builders without recent landed blocks or special requirements.")
     lines.append("pub static OTHER_BUILDERS: &[Builder] = &[")
 
     for builder, count in unmatched_builders:
-        lines.append(f"    // No recent block data")
+        if count > 0:
+            lines.append(f"    // Blocks: {count:,}")
+        else:
+            lines.append(f"    // No recent block data")
         lines.append(format_rust_builder(builder))
 
     lines.append("];")
@@ -222,7 +225,7 @@ def main():
         matched[extra_data] = count
 
     if unmatched_builders:
-        print(f"\nUnmatched builders (will be placed after matched builders):")
+        print(f"\nUnmatched builders (will be moved to OTHER_BUILDERS):")
         for builder, count in unmatched_builders:
             extra_data = builder.get('extra_data', 'None')
             print(f"  ✗ {builder['name']} ({extra_data}): No match")
@@ -246,13 +249,13 @@ def main():
 
     print(f"✓ Successfully updated {builders_file}")
     print(f"  - BUILDERS array: {len(matched_builders)} builders (with block data)")
-    print(f"  - OTHER_BUILDERS array: {len(unmatched_builders)} builders (without block data)")
+    print(f"  - OTHER_BUILDERS array: {len(unmatched_builders)} builders (without block data / special requirements)")
     print(f"  - Total builders: {len(builders_with_counts)}")
 
     # Show top builders
     if matched_builders:
         print(f"\nTop builders by block count:")
-        for i, (builder, count) in enumerate(matched_builders[:10]):
+        for i, (builder, count) in enumerate(matched_builders):
             print(f"  {i+1:2d}. {builder['name']:20s} - {count:,} blocks")
 
 if __name__ == "__main__":
