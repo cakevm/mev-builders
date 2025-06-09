@@ -1,0 +1,52 @@
+Fetching data for dates: 2025-06-02 to 2025-06-08 (7 days)
+============================================================
+Fetching data for 2025-06-02...
+  Found 14 unique parent builders
+Fetching data for 2025-06-03...
+  Found 15 unique parent builders
+Fetching data for 2025-06-04...
+  Found 15 unique parent builders
+Fetching data for 2025-06-05...
+  Found 16 unique parent builders
+Fetching data for 2025-06-06...
+  Found 16 unique parent builders
+Fetching data for 2025-06-07...
+  Found 13 unique parent builders
+Fetching data for 2025-06-08...
+  Found 13 unique parent builders
+
+================================================================================
+AGGREGATED BUILDER RESULTS (Hierarchical)
+================================================================================
+Builder Name                                       Blocks     Percentage
+--------------------------------------------------------------------------------
+Titan (titanbuilder.xyz)                           22,454     48.06    %
+beaverbuild.org                                    12,121     25.94    %
+BuilderNet                                         8,080      17.29    %
+├── BuilderNet (Flashbots)                         4,336      9.28     %
+├── BuilderNet (Beaver)                            2,550      5.46     %
+└── BuilderNet (Nethermind)                        1,194      2.56     %
+Quasar (quasar.win)                                1,982      4.24     %
+Builder+ www.btcs.com/builder                      1,057      2.26     %
+rsync-builder.xyz                                  797        1.71     %
+└── @rsyncbuilder                                  797        1.71     %
+bobTheBuilder.xyz                                  101        0.22     %
+https://blockbeelder.com                           24         0.05     %
+boba-builder.com                                   18         0.04     %
+BuildAI (https://buildai.net)                      17         0.04     %
+Ty For The Block                                   17         0.04     %
+(empty)                                            17         0.04     %
+Eureka (eurekabuilder.xyz)                         12         0.03     %
+Powered by bloXroute                               8          0.02     %
+geth go1.24.3 linux                                7          0.01     %
+I can haz block?                                   7          0.01     %
+gigabuilder.io                                     2          0.00     %
+0x65                                               2          0.00     %
+debuilder                                          1          0.00     %
+--------------------------------------------------------------------------------
+TOTAL                                              46,724     100.00%   
+
+Flat aggregated results saved to: builder_aggregated.json
+
+Total unique builders: 23
+Total blocks across all days: 55,601
