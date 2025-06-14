@@ -2,7 +2,7 @@ use crate::{Builder, Signing};
 
 /// List of known builders with their details, ordered by landed blocks.
 pub static BUILDERS: &[Builder] = &[
-    // Blocks: 22,454
+    // Blocks: 22,515
     Builder {
         name: "Titan Builder",
         identifier: "titan",
@@ -13,7 +13,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::Optional,
         account_required: false,
     },
-    // Blocks: 12,121
+    // Blocks: 12,651
     Builder {
         name: "Beaver Build",
         identifier: "beaverbuild",
@@ -24,7 +24,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 4,336
+    // Blocks: 3,756
     Builder {
         name: "Flashbots",
         identifier: "flashbots",
@@ -35,7 +35,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::Required,
         account_required: false,
     },
-    // Blocks: 1,982
+    // Blocks: 2,016
     Builder {
         name: "Quasar Builder",
         identifier: "quasar",
@@ -46,7 +46,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 1,057
+    // Blocks: 1,302
     Builder {
         name: "BTCS Builder",
         identifier: "btcs",
@@ -57,7 +57,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 797
+    // Blocks: 844
     Builder {
         name: "rsync Builder",
         identifier: "rsync",
@@ -68,7 +68,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 101
+    // Blocks: 98
     Builder {
         name: "Bob the Builder",
         identifier: "bobthebuilder",
@@ -79,7 +79,18 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 24
+    // Blocks: 36
+    Builder {
+        name: "Eureka Builder",
+        identifier: "eureka",
+        website: "https://eurekabuilder.xyz",
+        searcher_rpc: "https://rpc.eurekabuilder.xyz",
+        mev_share_rpc: Some("https://rpc.eurekabuilder.xyz"),
+        extra_data: Some("Eureka (eurekabuilder.xyz)"),
+        signing: Signing::NotSupported,
+        account_required: false,
+    },
+    // Blocks: 27
     Builder {
         name: "BlockBeelder",
         identifier: "blockbeelder",
@@ -87,17 +98,6 @@ pub static BUILDERS: &[Builder] = &[
         searcher_rpc: "https://blockbeelder.com/rpc",
         mev_share_rpc: Some("https://blockbeelder.com/rpc"),
         extra_data: Some("https://blockbeelder.com"),
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // Blocks: 18
-    Builder {
-        name: "Boba Builder",
-        identifier: "bobabuilder",
-        website: "https://boba-builder.com",
-        searcher_rpc: "https://boba-builder.com/searcher",
-        mev_share_rpc: Some("https://boba-builder.com/searcher/bundle"),
-        extra_data: Some("boba-builder.com"),
         signing: Signing::NotSupported,
         account_required: false,
     },
@@ -112,25 +112,14 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 12
+    // Blocks: 14
     Builder {
-        name: "Eureka Builder",
-        identifier: "eureka",
-        website: "https://eurekabuilder.xyz",
-        searcher_rpc: "https://rpc.eurekabuilder.xyz",
-        mev_share_rpc: Some("https://rpc.eurekabuilder.xyz"),
-        extra_data: Some("Eureka (eurekabuilder.xyz)"),
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // Blocks: 2
-    Builder {
-        name: "Gigabuilder",
-        identifier: "gigabuilder",
-        website: "https://gigabuilder.io",
-        searcher_rpc: "https://rpc.gigabuilder.io",
-        mev_share_rpc: None,
-        extra_data: Some("gigabuilder.io"),
+        name: "Boba Builder",
+        identifier: "bobabuilder",
+        website: "https://boba-builder.com",
+        searcher_rpc: "https://boba-builder.com/searcher",
+        mev_share_rpc: Some("https://boba-builder.com/searcher/bundle"),
+        extra_data: Some("boba-builder.com"),
         signing: Signing::NotSupported,
         account_required: false,
     },
@@ -138,7 +127,7 @@ pub static BUILDERS: &[Builder] = &[
 
 /// Other builders without recent landed blocks or special requirements.
 pub static OTHER_BUILDERS: &[Builder] = &[
-    // Blocks: 8,080
+    // Blocks: 7,335
     Builder {
         name: "BuilderNet",
         identifier: "buildernet",
@@ -149,7 +138,7 @@ pub static OTHER_BUILDERS: &[Builder] = &[
         signing: Signing::Required,
         account_required: false,
     },
-    // Blocks: 8
+    // Blocks: 9
     Builder {
         name: "bloXroute",
         identifier: "bloxroute",
@@ -190,6 +179,17 @@ pub static OTHER_BUILDERS: &[Builder] = &[
         searcher_rpc: "https://builder.eigenphi.io",
         mev_share_rpc: Some("https://builder.eigenphi.io"),
         extra_data: None,
+        signing: Signing::NotSupported,
+        account_required: false,
+    },
+    // No recent block data
+    Builder {
+        name: "Gigabuilder",
+        identifier: "gigabuilder",
+        website: "https://gigabuilder.io",
+        searcher_rpc: "https://rpc.gigabuilder.io",
+        mev_share_rpc: None,
+        extra_data: Some("gigabuilder.io"),
         signing: Signing::NotSupported,
         account_required: false,
     },
