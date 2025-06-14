@@ -123,6 +123,17 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
+    // Blocks: 3
+    Builder {
+        name: "TurboBuilder",
+        identifier: "turbobuilder",
+        website: "https://turbobuilder.xyz/",
+        searcher_rpc: "https://rpc.turbobuilder.xyz",
+        mev_share_rpc: None,
+        extra_data: Some("rpc.turbobuilder.xyz"),
+        signing: Signing::NotSupported,
+        account_required: false,
+    },
 ];
 
 /// Other builders without recent landed blocks or special requirements.
