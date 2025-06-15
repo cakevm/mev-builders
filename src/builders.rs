@@ -2,7 +2,7 @@ use crate::{Builder, Signing};
 
 /// List of known builders with their details, ordered by landed blocks.
 pub static BUILDERS: &[Builder] = &[
-    // Blocks: 22,515
+    // Blocks: 21,608
     Builder {
         name: "Titan Builder",
         identifier: "titan",
@@ -13,7 +13,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::Optional,
         account_required: false,
     },
-    // Blocks: 12,651
+    // Blocks: 13,041
     Builder {
         name: "Beaver Build",
         identifier: "beaverbuild",
@@ -24,7 +24,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 3,756
+    // Blocks: 3,822
     Builder {
         name: "Flashbots",
         identifier: "flashbots",
@@ -46,7 +46,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 1,302
+    // Blocks: 1,295
     Builder {
         name: "BTCS Builder",
         identifier: "btcs",
@@ -57,7 +57,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 844
+    // Blocks: 909
     Builder {
         name: "rsync Builder",
         identifier: "rsync",
@@ -68,18 +68,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 98
-    Builder {
-        name: "Bob the Builder",
-        identifier: "bobthebuilder",
-        website: "https://bobthebuilder.xyz",
-        searcher_rpc: "https://rpc.bobthebuilder.xyz",
-        mev_share_rpc: None,
-        extra_data: Some("bobTheBuilder.xyz"),
-        signing: Signing::NotSupported,
-        account_required: false,
-    },
-    // Blocks: 36
+    // Blocks: 115
     Builder {
         name: "Eureka Builder",
         identifier: "eureka",
@@ -90,7 +79,18 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 27
+    // Blocks: 96
+    Builder {
+        name: "Bob the Builder",
+        identifier: "bobthebuilder",
+        website: "https://bobthebuilder.xyz",
+        searcher_rpc: "https://rpc.bobthebuilder.xyz",
+        mev_share_rpc: None,
+        extra_data: Some("bobTheBuilder.xyz"),
+        signing: Signing::NotSupported,
+        account_required: false,
+    },
+    // Blocks: 29
     Builder {
         name: "BlockBeelder",
         identifier: "blockbeelder",
@@ -101,7 +101,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 17
+    // Blocks: 19
     Builder {
         name: "BuildAI",
         identifier: "buildai",
@@ -112,7 +112,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 14
+    // Blocks: 13
     Builder {
         name: "Boba Builder",
         identifier: "bobabuilder",
@@ -123,7 +123,7 @@ pub static BUILDERS: &[Builder] = &[
         signing: Signing::NotSupported,
         account_required: false,
     },
-    // Blocks: 3
+    // Blocks: 4
     Builder {
         name: "TurboBuilder",
         identifier: "turbobuilder",
@@ -138,7 +138,7 @@ pub static BUILDERS: &[Builder] = &[
 
 /// Other builders without recent landed blocks or special requirements.
 pub static OTHER_BUILDERS: &[Builder] = &[
-    // Blocks: 7,335
+    // Blocks: 7,644
     Builder {
         name: "BuilderNet",
         identifier: "buildernet",
