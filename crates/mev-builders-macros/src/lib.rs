@@ -4,6 +4,24 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
+use syn::{parse_macro_input, LitStr, Token};
+
+struct MacroInput {
+    builders_path: LitStr,
+    stats_path: LitStr,
+}
+
+impl syn::parse::Parse for MacroInput {
+    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+        let builders_path: LitStr = input.parse()?;
+        input.parse::<Token![,]>()?;
+        let stats_path: LitStr = input.parse()?;
+        Ok(MacroInput {
+            builders_path,
+            stats_path,
+        })
+    }
+}
 
 #[derive(Debug, Deserialize, Serialize)]
 struct BuilderJson {
@@ -18,14 +36,16 @@ struct BuilderJson {
 }
 
 #[proc_macro]
-pub fn include_builders(_input: TokenStream) -> TokenStream {
-    // Get the workspace root directory (where the data folder is)
+pub fn include_builders(input: TokenStream) -> TokenStream {
+    let input = parse_macro_input!(input as MacroInput);
+    
+    // Get the manifest directory and resolve paths
     let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not set");
-    let workspace_root = Path::new(&manifest_dir).parent().unwrap().parent().unwrap();
-
-    // Read both JSON files from workspace root
-    let builders_path = workspace_root.join("data/builders.json");
-    let stats_path = workspace_root.join("data/builders_stats.json");
+    let base_path = Path::new(&manifest_dir);
+    
+    // Parse the file paths from the macro arguments
+    let builders_path = base_path.join(input.builders_path.value());
+    let stats_path = base_path.join(input.stats_path.value());
 
     let builders_json =
         fs::read_to_string(&builders_path).unwrap_or_else(|_| panic!("Failed to read builders.json from {:?}", builders_path));

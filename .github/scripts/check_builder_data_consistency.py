@@ -72,8 +72,8 @@ def main():
     repo_root = os.path.dirname(os.path.dirname(script_dir))
     
     # Paths to the JSON files
-    builders_file = os.path.join(repo_root, 'data', 'builders.json')
-    stats_file = os.path.join(repo_root, 'data', 'builders_stats.json')
+    builders_file = os.path.join(repo_root, 'crates', 'mev-builders', 'data', 'builders.json')
+    stats_file = os.path.join(repo_root, 'crates', 'mev-builders', 'data', 'builders_stats.json')
     
     # Check if files exist
     if not os.path.exists(builders_file):
