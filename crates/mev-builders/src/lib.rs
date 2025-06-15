@@ -1,5 +1,7 @@
-mod builders;
-pub use builders::BUILDERS;
+use mev_builders_macros::include_builders;
+
+/// List of known builders with their details, ordered by landed blocks.
+pub static BUILDERS: &[Builder] = include_builders!();
 
 /// Indicates if a builder requires signing for bundles using `X-Flashbots-Signature`.
 ///

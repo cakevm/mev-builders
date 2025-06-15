@@ -19,12 +19,13 @@ struct BuilderJson {
 
 #[proc_macro]
 pub fn include_builders(_input: TokenStream) -> TokenStream {
-    // Get the manifest directory (where Cargo.toml is)
+    // Get the workspace root directory (where the data folder is)
     let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not set");
+    let workspace_root = Path::new(&manifest_dir).parent().unwrap().parent().unwrap();
 
-    // Read both JSON files
-    let builders_path = Path::new(&manifest_dir).join("data/builders.json");
-    let stats_path = Path::new(&manifest_dir).join("data/builders_stats.json");
+    // Read both JSON files from workspace root
+    let builders_path = workspace_root.join("data/builders.json");
+    let stats_path = workspace_root.join("data/builders_stats.json");
 
     let builders_json =
         fs::read_to_string(&builders_path).unwrap_or_else(|_| panic!("Failed to read builders.json from {:?}", builders_path));

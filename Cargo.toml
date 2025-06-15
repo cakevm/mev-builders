@@ -1,16 +1,31 @@
 [workspace]
-members = [".", "mev-builders-macros"]
+members = ["crates/mev-builders", "crates/mev-builders-macros"]
 resolver = "2"
 
 [package]
-name = "mev-builders"
-version = "0.1.4"
-edition = "2024"
-license = "MIT OR Apache-2.0"
-description = "MEV builder endpoints, all in one place"
-homepage = "https://github.com/cakevm/mev-builders"
-repository = "https://github.com/cakevm/mev-builders"
-exclude = [".github/"]
+name = "mev-builders-workspace"
+version.workspace = true
+edition.workspace = true
+publish = false
 
 [dependencies]
-mev-builders-macros = { version = "0.1.4", path = "mev-builders-macros" }
+mev-builders.workspace = true
+
+[workspace.package]
+edition = "2024"
+exclude = [".github/"]
+homepage = "https://github.com/cakevm/mev-builders"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/cakevm/mev-builders"
+rust-version = "1.87"
+version = "0.1.4"
+
+[workspace.dependencies]
+mev-builders = { path = "crates/mev-builders" }
+mev-builders-macros = { path = "crates/mev-builders-macros" }
+
+proc-macro2 = "1.0"
+quote = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+syn = "2.0"

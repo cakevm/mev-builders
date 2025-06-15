@@ -1,0 +1,12 @@
+[package]
+name = "mev-builders"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "MEV builder endpoints, all in one place"
+homepage.workspace = true
+repository.workspace = true
+exclude.workspace = true
+
+[dependencies]
+mev-builders-macros.workspace = true

@@ -33,6 +33,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "mev-builders-workspace"
+version = "0.1.4"
+dependencies = [
+ "mev-builders",
+]
+
+[[package]]
 name = "proc-macro2"
 version = "1.0.95"
 source = "registry+https://github.com/rust-lang/crates.io-index"

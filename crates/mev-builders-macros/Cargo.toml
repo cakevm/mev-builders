@@ -1,0 +1,19 @@
+[package]
+name = "mev-builders-macros"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Procedural macros for mev-builders crate"
+homepage.workspace = true
+repository.workspace = true
+exclude.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2.workspace = true
+quote.workspace = true
+syn.workspace = true
+serde.workspace = true
+serde_json.workspace = true
