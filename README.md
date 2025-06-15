@@ -11,7 +11,7 @@ Just import the list, filter what you need, order them by your preference, and u
 use mev_builders::BUILDERS;
 ```
 
-By default, the list is ordered by the number of landed blocks in the last week. If a builder has no landed blocks, the builder will be moved to `OTHER_BUILDERS` list.
+By default, the list is ordered by the number of landed blocks in the last week.
 
 # Contributing
 If you want to add, or update a builder, please open a pull request.
