@@ -33,7 +33,7 @@ jobs:
 
       - name: Build tools
         run: |
-          cargo build --release --features tools --bin mev-builders-stats --bin mev-builders-check
+          cargo build --release -p mev-builders --features tools --bin mev-builders-stats --bin mev-builders-check
 
       - name: Run aggregate stats script
         id: aggregate_stats
