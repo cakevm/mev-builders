@@ -23,7 +23,7 @@ dependencies = [
 
 [[package]]
 name = "mev-builders-macros"
-version = "0.1.0"
+version = "0.1.4"
 dependencies = [
  "proc-macro2",
  "quote",

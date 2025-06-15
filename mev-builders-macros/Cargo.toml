@@ -1,8 +1,11 @@
 [package]
 name = "mev-builders-macros"
-version = "0.1.0"
+version = "0.1.4"
 edition = "2024"
 license = "MIT OR Apache-2.0"
+description = "Procedural macros for mev-builders crate"
+homepage = "https://github.com/cakevm/mev-builders"
+repository = "https://github.com/cakevm/mev-builders"
 
 [lib]
 proc-macro = true

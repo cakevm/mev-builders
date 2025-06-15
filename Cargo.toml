@@ -1,3 +1,7 @@
+[workspace]
+members = [".", "mev-builders-macros"]
+resolver = "2"
+
 [package]
 name = "mev-builders"
 version = "0.1.4"
@@ -8,4 +12,4 @@ homepage = "https://github.com/cakevm/mev-builders"
 repository = "https://github.com/cakevm/mev-builders"
 
 [dependencies]
-mev-builders-macros = { path = "mev-builders-macros" }
+mev-builders-macros = { version = "0.1.4", path = "mev-builders-macros" }
