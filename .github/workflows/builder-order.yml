@@ -31,27 +31,10 @@ jobs:
         id: aggregate_stats
         run: |
           cd .github/scripts
-          python aggregate_stats.py > ../../stats_output.txt
+          python aggregate_stats.py -o ../../data/builders_stats.json > ../../stats_output.txt
           echo "stats_output<<EOF" >> $GITHUB_OUTPUT
           cat ../../stats_output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Run code generation script
-        id: gen_code
-        run: |
-          cd .github/scripts
-          python gen_code.py  > ../../gen_code_output.txt
-          echo "gen_code_output<<EOF" >> $GITHUB_OUTPUT
-          cat ../../gen_code_output.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Format Rust code
-        run: cargo fmt
-
-      - name: Clean up temporary files
-        run: |
-          rm -f stats_output.txt gen_code_output.txt
-          rm -f .github/scripts/builder_aggregated.json
 
       - name: Check for changes
         id: check_changes
@@ -66,15 +49,8 @@ jobs:
             exit 0
           fi
           
-          # Check if changes are more than just comments
-          # This checks for lines that don't start with # or // or /* or * or */
-          if git diff --unified=0 | grep -E '^[\+\-]' | grep -v -E '^[\+\-][\+\-][\+\-]' | grep -E '^[\+\-][^#/\*\s]|^[\+\-]\s*[^#/\*\s]' | grep -v -E '^\+\s*\*|^\-\s*\*|^\+\s*\*/|^\-\s*\*/' > /dev/null; then
-            echo "Substantial changes detected (more than comments)"
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "Only comment changes detected"
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          fi
+          echo "Substantial changes detected (more than comments)"
+          echo "has_changes=true" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
         if: steps.check_changes.outputs.has_changes == 'true'
@@ -86,9 +62,6 @@ jobs:
           body: |
             ```
             ${{ steps.aggregate_stats.outputs.stats_output }}
-            ```
-            ```
-            ${{ steps.gen_code.outputs.gen_code_output }}
             ```
           branch: weekly-builder-order-update
           delete-branch: true

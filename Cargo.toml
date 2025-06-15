@@ -8,3 +8,4 @@ homepage = "https://github.com/cakevm/mev-builders"
 repository = "https://github.com/cakevm/mev-builders"
 
 [dependencies]
+mev-builders-macros = { path = "mev-builders-macros" }

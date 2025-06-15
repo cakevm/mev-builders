@@ -211,8 +211,8 @@ def main():
     parser.add_argument('--end', '-e', help='End date (YYYY-MM-DD)')
     parser.add_argument('--days', '-d', type=int, default=7,
                         help='Number of days to fetch (default: 7, used when start/end not specified)')
-    parser.add_argument('--output', '-o', default='builder_aggregated.json',
-                        help='Output JSON file (default: builder_aggregated.json)')
+    parser.add_argument('--output', '-o', default='builders_stats.json',
+                        help='Output JSON file (default: builders_stats.json)')
 
     args = parser.parse_args()
 

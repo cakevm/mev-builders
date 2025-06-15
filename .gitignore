@@ -12,4 +12,4 @@ target/
 # IDE files
 .idea
 .vscode
-.github/scripts/builder_aggregated.json
+data/builder_aggregated.json

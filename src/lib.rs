@@ -1,10 +1,11 @@
 mod builders;
-pub use builders::{BUILDERS, OTHER_BUILDERS};
+pub use builders::BUILDERS;
 
 /// Indicates if a builder requires signing for bundles using `X-Flashbots-Signature`.
 ///
 /// All builder besides Flashbots have signing as optional or not supported.
 /// If provided, the builder may give better priority to signed bundles.
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Signing {
     /// Bundle gets rejected if not signed.
     Required,
@@ -30,6 +31,7 @@ impl Signing {
 }
 
 /// Represents a builder with its details.
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Builder<'a> {
     /// Human-readable name of the builder.
     pub name: &'a str,
@@ -47,6 +49,8 @@ pub struct Builder<'a> {
     pub signing: Signing,
     /// Requires account to use the RPC.
     pub account_required: bool,
+    /// Number of blocks landed by this builder.
+    pub blocks: u64,
 }
 
 impl<'a> Builder<'a> {
@@ -63,36 +67,65 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_builders() {
+    fn verify_that_min_five_builders_are_present() {
+        // Ensure that there are at least 5 builders defined
+        assert!(BUILDERS.len() >= 5, "There should be at least 5 builders defined");
+    }
+
+    #[test]
+    fn verify_builders_sorted_by_blocks() {
+        // Verify that builders are sorted by blocks in descending order
+        for i in 1..BUILDERS.len() {
+            assert!(
+                BUILDERS[i - 1].blocks >= BUILDERS[i].blocks,
+                "Builders should be sorted by blocks in descending order. {} ({} blocks) comes before {} ({} blocks)",
+                BUILDERS[i - 1].name,
+                BUILDERS[i - 1].blocks,
+                BUILDERS[i].name,
+                BUILDERS[i].blocks
+            );
+        }
+    }
+
+    #[test]
+    fn test_required_fields_not_empty() {
         for builder in BUILDERS {
-            // Ensure all required fields are populated
             assert!(!builder.name.is_empty(), "Builder name should not be empty");
             assert!(!builder.identifier.is_empty(), "Builder identifier should not be empty");
             assert!(!builder.website.is_empty(), "Builder website should not be empty");
             assert!(!builder.searcher_rpc.is_empty(), "Builder searcher RPC should not be empty");
+        }
+    }
 
-            // Check if the identifier is a valid lowercase alphanumeric string
+    #[test]
+    fn test_identifier_format() {
+        for builder in BUILDERS {
             assert!(
                 builder.identifier.chars().all(|c| c.is_ascii_lowercase() || c.is_ascii_digit()),
                 "Builder identifier should be lowercase alphanumeric: {}",
                 builder.identifier
             );
+        }
+    }
 
-            // Starts with "https://" or "http://"
+    #[test]
+    fn test_urls_valid_format() {
+        for builder in BUILDERS {
+            // Check website URL
             assert!(
                 builder.website.starts_with("https://") || builder.website.starts_with("http://"),
                 "Builder website should start with 'https://' or 'http://': {}",
                 builder.website
             );
 
-            // Check if rpc starts with "https://" or "http://"
+            // Check searcher RPC URL
             assert!(
                 builder.searcher_rpc.starts_with("https://") || builder.searcher_rpc.starts_with("http://"),
                 "Builder searcher_rpc should start with 'https://' or 'http://': {}",
                 builder.searcher_rpc
             );
 
-            // Check if mev_share_rpc is None or starts with "https://" or "http://"
+            // Check MEV share RPC URL if present
             if let Some(mev_share_rpc) = builder.mev_share_rpc {
                 assert!(
                     mev_share_rpc.starts_with("https://") || mev_share_rpc.starts_with("http://"),
@@ -100,25 +133,45 @@ mod tests {
                     mev_share_rpc
                 );
             }
+        }
+    }
 
-            // Check that the name is unique
-            let mut name_set = std::collections::HashSet::new();
+    #[test]
+    fn test_unique_names() {
+        let mut name_set = std::collections::HashSet::new();
+        for builder in BUILDERS {
             assert!(name_set.insert(builder.name), "Duplicate builder name found: {}", builder.name);
+        }
+    }
 
-            // Check that the identifier is unique
-            let mut identifier_set = std::collections::HashSet::new();
+    #[test]
+    fn test_unique_identifiers() {
+        let mut identifier_set = std::collections::HashSet::new();
+        for builder in BUILDERS {
             assert!(identifier_set.insert(builder.identifier), "Duplicate builder identifier found: {}", builder.identifier);
+        }
+    }
 
-            // Check that the website is unique
-            let mut website_set = std::collections::HashSet::new();
+    #[test]
+    fn test_unique_websites() {
+        let mut website_set = std::collections::HashSet::new();
+        for builder in BUILDERS {
             assert!(website_set.insert(builder.website), "Duplicate builder website found: {}", builder.website);
+        }
+    }
 
-            // Check that rpc endpoints are unique
-            let mut rpc_set = std::collections::HashSet::new();
+    #[test]
+    fn test_unique_rpc_endpoints() {
+        let mut rpc_set = std::collections::HashSet::new();
+        for builder in BUILDERS {
             assert!(rpc_set.insert(builder.searcher_rpc), "Duplicate searcher RPC found: {}", builder.searcher_rpc);
+        }
+    }
 
-            // Check that mev_share_rpc endpoints are unique
-            let mut mev_share_rpc_set = std::collections::HashSet::new();
+    #[test]
+    fn test_unique_mev_share_endpoints() {
+        let mut mev_share_rpc_set = std::collections::HashSet::new();
+        for builder in BUILDERS {
             if let Some(mev_share_rpc) = builder.mev_share_rpc {
                 assert!(mev_share_rpc_set.insert(mev_share_rpc), "Duplicate MEV share RPC found: {}", mev_share_rpc);
             }

@@ -1,5 +1,5 @@
 # MEV Builders
-Sick of maintaining builder RPCs yourself in your bot? This repository has you covered! A list of MEV builders with their RPCs and other useful information. No extra dependencies, no build script, just a simple list of builders ordered by landed blocks. 
+Sick of maintaining builder RPCs yourself in your bot? This repository has you covered! A list of MEV builders with their RPCs and other useful information. Just a simple list of builders ordered by landed blocks. 
 
 # Status
 This is the first draft of the repository. It is not yet complete and may contain inaccuracies. Feel free to contribute by adding or updating builders.
