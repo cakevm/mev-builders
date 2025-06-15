@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2025-06-15
+- Allow to read custom builder data from a file
+- Restructure crates structure
+
 ## [0.1.4] - 2025-06-15
 - Switch to macro-based approach for builder data
 

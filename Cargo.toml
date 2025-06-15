@@ -18,7 +18,7 @@ homepage = "https://github.com/cakevm/mev-builders"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/cakevm/mev-builders"
 rust-version = "1.87"
-version = "0.1.4"
+version = "0.1.5"
 
 [workspace.dependencies]
 mev-builders = { path = "crates/mev-builders" }
