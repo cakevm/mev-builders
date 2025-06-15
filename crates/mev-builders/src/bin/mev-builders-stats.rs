@@ -32,12 +32,7 @@ fn main() -> Result<()> {
     let aggregator = StatsAggregator::new()?;
 
     // Run aggregation
-    aggregator.aggregate_and_save(
-        args.start.as_deref(),
-        args.end.as_deref(),
-        args.days,
-        &args.output,
-    )?;
+    aggregator.aggregate_and_save(args.start.as_deref(), args.end.as_deref(), args.days, &args.output)?;
 
     Ok(())
 }

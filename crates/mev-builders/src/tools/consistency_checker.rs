@@ -32,6 +32,12 @@ pub struct BuilderInfo {
 
 pub struct ConsistencyChecker;
 
+impl Default for ConsistencyChecker {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl ConsistencyChecker {
     pub fn new() -> Self {
         Self
@@ -39,11 +45,9 @@ impl ConsistencyChecker {
 
     /// Load and parse a JSON file
     fn load_json_file<T: for<'de> Deserialize<'de>>(path: &Path) -> Result<T> {
-        let content = fs::read_to_string(path)
-            .context(format!("Failed to read file: {}", path.display()))?;
-        
-        serde_json::from_str(&content)
-            .context(format!("Failed to parse JSON from: {}", path.display()))
+        let content = fs::read_to_string(path).context(format!("Failed to read file: {}", path.display()))?;
+
+        serde_json::from_str(&content).context(format!("Failed to parse JSON from: {}", path.display()))
     }
 
     /// Check consistency between builders.json and builders_stats.json
@@ -70,15 +74,13 @@ impl ConsistencyChecker {
 
         // Get all extra_data values from builders
         let builder_extra_data_set: HashSet<String> = builders_by_extra_data.keys().cloned().collect();
-        
+
         // Get all keys from stats
         let stats_keys_set: HashSet<String> = stats.keys().cloned().collect();
 
         // Find stats keys not in builders
-        let mut stats_not_in_builders: Vec<(String, u64)> = stats_keys_set
-            .difference(&builder_extra_data_set)
-            .map(|key| (key.clone(), stats[key]))
-            .collect();
+        let mut stats_not_in_builders: Vec<(String, u64)> =
+            stats_keys_set.difference(&builder_extra_data_set).map(|key| (key.clone(), stats[key])).collect();
         stats_not_in_builders.sort_by(|a, b| a.0.cmp(&b.0));
 
         // Find builders with extra_data not in stats
@@ -95,11 +97,7 @@ impl ConsistencyChecker {
             }
         }
 
-        Ok(ConsistencyReport {
-            stats_not_in_builders,
-            builders_not_in_stats,
-            builders_without_extra_data,
-        })
+        Ok(ConsistencyReport { stats_not_in_builders, builders_not_in_stats, builders_without_extra_data })
     }
 
     /// Print the consistency report
