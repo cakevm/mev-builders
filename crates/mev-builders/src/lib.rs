@@ -1,5 +1,8 @@
 use mev_builders_macros::include_builders;
 
+#[cfg(feature = "tools")]
+pub mod tools;
+
 /// List of known builders with their details, ordered by landed blocks.
 pub static BUILDERS: &[Builder] = include_builders!("data/builders.json", "data/builders_stats.json");
 

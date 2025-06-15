@@ -17,36 +17,42 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
 
-      - name: Install dependencies
+      - name: Cache cargo dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Build tools
         run: |
-          python -m pip install --upgrade pip
-          pip install requests
+          cargo build --release --features tools --bin mev-builders-stats --bin mev-builders-check
 
       - name: Run aggregate stats script
         id: aggregate_stats
         run: |
-          cd .github/scripts
-          python aggregate_stats.py -o ../../crates/mev-builders/data/builders_stats.json > ../../stats_output.txt
+          target/release/mev-builders-stats --days 7 --output crates/mev-builders/data/builders_stats.json > stats_output.txt
           echo "stats_output<<EOF" >> $GITHUB_OUTPUT
-          cat ../../stats_output.txt >> $GITHUB_OUTPUT
+          cat stats_output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          rm ../../stats_output.txt
+          rm stats_output.txt
 
       - name: Check builder data consistency
         id: check_consistency
         run: |
-          cd .github/scripts
           # Run the consistency check and capture output (ignore exit code for now)
-          python check_builder_data_consistency.py > ../../consistency_output.txt 2>&1 || true
+          target/release/mev-builders-check --builders crates/mev-builders/data/builders.json --stats crates/mev-builders/data/builders_stats.json > consistency_output.txt 2>&1 || true
           echo "consistency_output<<EOF" >> $GITHUB_OUTPUT
-          cat ../../consistency_output.txt >> $GITHUB_OUTPUT
+          cat consistency_output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          rm ../../consistency_output.txt
+          rm consistency_output.txt
 
       - name: Check for changes
         id: check_changes
