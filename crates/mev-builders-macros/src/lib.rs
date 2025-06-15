@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
-use syn::{parse_macro_input, LitStr, Token};
+use syn::{LitStr, Token, parse_macro_input};
 
 struct MacroInput {
     builders_path: LitStr,
@@ -16,10 +16,7 @@ impl syn::parse::Parse for MacroInput {
         let builders_path: LitStr = input.parse()?;
         input.parse::<Token![,]>()?;
         let stats_path: LitStr = input.parse()?;
-        Ok(MacroInput {
-            builders_path,
-            stats_path,
-        })
+        Ok(MacroInput { builders_path, stats_path })
     }
 }
 
@@ -38,11 +35,11 @@ struct BuilderJson {
 #[proc_macro]
 pub fn include_builders(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as MacroInput);
-    
+
     // Get the manifest directory and resolve paths
     let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not set");
     let base_path = Path::new(&manifest_dir);
-    
+
     // Parse the file paths from the macro arguments
     let builders_path = base_path.join(input.builders_path.value());
     let stats_path = base_path.join(input.stats_path.value());
