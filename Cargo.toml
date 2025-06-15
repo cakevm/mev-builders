@@ -10,6 +10,7 @@ license = "MIT OR Apache-2.0"
 description = "MEV builder endpoints, all in one place"
 homepage = "https://github.com/cakevm/mev-builders"
 repository = "https://github.com/cakevm/mev-builders"
+exclude = [".github/"]
 
 [dependencies]
 mev-builders-macros = { version = "0.1.4", path = "mev-builders-macros" }
