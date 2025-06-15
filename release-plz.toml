@@ -1,0 +1,10 @@
+[[package]]
+name = "mev-builders"
+release = true
+changelog_update = true
+changelog_path = "./CHANGELOG.md"
+
+[[package]]
+name = "mev-builders-macros"
+release = true
+changelog_update = false
