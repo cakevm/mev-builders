@@ -26,8 +26,9 @@ pub fn include_builders(_input: TokenStream) -> TokenStream {
     let builders_path = Path::new(&manifest_dir).join("data/builders.json");
     let stats_path = Path::new(&manifest_dir).join("data/builders_stats.json");
 
-    let builders_json = fs::read_to_string(&builders_path).expect(&format!("Failed to read builders.json from {:?}", builders_path));
-    let stats_json = fs::read_to_string(&stats_path).expect(&format!("Failed to read builders_stats.json from {:?}", stats_path));
+    let builders_json =
+        fs::read_to_string(&builders_path).unwrap_or_else(|_| panic!("Failed to read builders.json from {:?}", builders_path));
+    let stats_json = fs::read_to_string(&stats_path).unwrap_or_else(|_| panic!("Failed to read builders_stats.json from {:?}", stats_path));
 
     // Parse JSON using structs
     let builders_data: Vec<BuilderJson> = serde_json::from_str(&builders_json).expect("Failed to parse builders.json");
