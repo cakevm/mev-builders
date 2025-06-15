@@ -16,7 +16,7 @@ clean:
 	cargo clean
 
 fmt:
-	cargo fmt
+	cargo fmt --all
 
 fmt-check:
 	cargo fmt --all --check
