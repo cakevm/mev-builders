@@ -37,6 +37,17 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
           rm ../../stats_output.txt
 
+      - name: Check builder data consistency
+        id: check_consistency
+        run: |
+          cd .github/scripts
+          # Run the consistency check and capture output (ignore exit code for now)
+          python check_builder_data_consistency.py > ../../consistency_output.txt 2>&1 || true
+          echo "consistency_output<<EOF" >> $GITHUB_OUTPUT
+          cat ../../consistency_output.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          rm ../../consistency_output.txt
+
       - name: Check for changes
         id: check_changes
         run: |
@@ -61,8 +72,14 @@ jobs:
           commit-message: "chore: weekly builder order update"
           title: "chore: weekly builder order update"
           body: |
+            ## Builder Stats Update
             ```
             ${{ steps.aggregate_stats.outputs.stats_output }}
+            ```
+            
+            ## Data Consistency Check
+            ```
+            ${{ steps.check_consistency.outputs.consistency_output }}
             ```
           branch: weekly-builder-order-update
           delete-branch: true
