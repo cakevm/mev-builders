@@ -16,14 +16,14 @@ checksum = "32a282da65faaf38286cf3be983213fcf1d2e2a58700e808f83f4ea9a4804bc0"
 
 [[package]]
 name = "mev-builders"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
  "mev-builders-macros",
 ]
 
 [[package]]
 name = "mev-builders-macros"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -34,7 +34,7 @@ dependencies = [
 
 [[package]]
 name = "mev-builders-workspace"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
  "mev-builders",
 ]

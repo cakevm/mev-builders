@@ -18,11 +18,11 @@ homepage = "https://github.com/cakevm/mev-builders"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/cakevm/mev-builders"
 rust-version = "1.87"
-version = "0.1.5"
+version = "0.1.6"
 
 [workspace.dependencies]
 mev-builders = { path = "crates/mev-builders" }
-mev-builders-macros = { version = "0.1.5", path = "crates/mev-builders-macros" }
+mev-builders-macros = { version = "0.1.6", path = "crates/mev-builders-macros" }
 
 proc-macro2 = "1.0"
 quote = "1.0"
