@@ -248,5 +248,15 @@
     "extra_data": null,
     "signing": "NotSupported",
     "account_required": false
+  },
+  {
+    "name": "Mempool Party",
+    "identifier": "mempoolparty",
+    "website": "https://flowbuild.xyz",
+    "searcher_rpc": "https://rpc.flowbuild.xyz",
+    "mev_share_rpc": null,
+    "extra_data": "Mempool Party (flowbuild.xyz)",
+    "signing": "NotSupported",
+    "account_required": false
   }
 ]
