@@ -109,7 +109,7 @@ impl ConsistencyChecker {
             println!("❌ Stats entries not found in builders.json:");
             println!("{}", "=".repeat(50));
             for (key, blocks) in &report.stats_not_in_builders {
-                println!("  - '{}' ({} blocks)", key, blocks);
+                println!("  - '{key}' ({blocks} blocks)");
             }
             println!();
         }

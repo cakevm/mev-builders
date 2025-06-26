@@ -55,9 +55,9 @@ impl StatsAggregator {
 
     /// Fetch relay data for a specific date
     fn fetch_relay_data(&self, date: &str) -> Result<RelayResponse> {
-        let url = format!("https://www.relayscan.io/stats/day/{}/json", date);
+        let url = format!("https://www.relayscan.io/stats/day/{date}/json");
 
-        let response = self.client.get(&url).send().context(format!("Failed to fetch data for {}", date))?;
+        let response = self.client.get(&url).send().context(format!("Failed to fetch data for {date}"))?;
 
         if !response.status().is_success() {
             anyhow::bail!("HTTP error: {}", response.status());
@@ -193,7 +193,7 @@ impl StatsAggregator {
         let mut total_flat_aggregated: HashMap<String, u64> = HashMap::new();
 
         for date_str in &dates {
-            println!("Fetching data for {}...", date_str);
+            println!("Fetching data for {date_str}...");
 
             match self.fetch_relay_data(date_str) {
                 Ok(data) => {
@@ -208,7 +208,7 @@ impl StatsAggregator {
                     all_hierarchical_data.push(hierarchical);
                 }
                 Err(e) => {
-                    println!("  Error: {}", e);
+                    println!("  Error: {e}");
                 }
             }
         }
@@ -265,7 +265,7 @@ impl StatsAggregator {
                     let child_name = if child.name.is_empty() { "(empty)" } else { &child.name };
                     let child_percentage = if total_blocks > 0 { (child.blocks as f64 / total_blocks as f64) * 100.0 } else { 0.0 };
 
-                    let display_name = format!("{}{}", prefix, child_name);
+                    let display_name = format!("{prefix}{child_name}");
                     println!("{:<50} {:<10} {:<9.2}%", display_name, child.blocks, child_percentage);
                 }
             }

@@ -45,8 +45,8 @@ pub fn include_builders(input: TokenStream) -> TokenStream {
     let stats_path = base_path.join(input.stats_path.value());
 
     let builders_json =
-        fs::read_to_string(&builders_path).unwrap_or_else(|_| panic!("Failed to read builders.json from {:?}", builders_path));
-    let stats_json = fs::read_to_string(&stats_path).unwrap_or_else(|_| panic!("Failed to read builders_stats.json from {:?}", stats_path));
+        fs::read_to_string(&builders_path).unwrap_or_else(|_| panic!("Failed to read builders.json from {builders_path:?}"));
+    let stats_json = fs::read_to_string(&stats_path).unwrap_or_else(|_| panic!("Failed to read builders_stats.json from {stats_path:?}"));
 
     // Parse JSON using structs
     let builders_data: Vec<BuilderJson> = serde_json::from_str(&builders_json).expect("Failed to parse builders.json");
