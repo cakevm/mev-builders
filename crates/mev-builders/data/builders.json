@@ -250,12 +250,12 @@
     "account_required": false
   },
   {
-    "name": "Mempool Party",
-    "identifier": "mempoolparty",
+    "name": "Flowbuild",
+    "identifier": "flowbuild",
     "website": "https://flowbuild.xyz",
     "searcher_rpc": "https://rpc.flowbuild.xyz",
     "mev_share_rpc": null,
-    "extra_data": "Mempool Party (flowbuild.xyz)",
+    "extra_data": "Flowbuild (flowbuild.xyz)",
     "signing": "NotSupported",
     "account_required": false
   }
