@@ -86,14 +86,14 @@ impl ConsistencyChecker {
         // Find builders with extra_data not in stats
         let mut builders_not_in_stats = Vec::new();
         for builder in &builders {
-            if let Some(extra_data) = &builder.extra_data {
-                if !stats.contains_key(extra_data) {
-                    builders_not_in_stats.push(BuilderInfo {
-                        name: builder.name.clone(),
-                        identifier: builder.identifier.clone(),
-                        extra_data: Some(extra_data.clone()),
-                    });
-                }
+            if let Some(extra_data) = &builder.extra_data
+                && !stats.contains_key(extra_data)
+            {
+                builders_not_in_stats.push(BuilderInfo {
+                    name: builder.name.clone(),
+                    identifier: builder.identifier.clone(),
+                    extra_data: Some(extra_data.clone()),
+                });
             }
         }
 
