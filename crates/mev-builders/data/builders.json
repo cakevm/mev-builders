@@ -258,5 +258,15 @@
     "extra_data": "Flowbuild (flowbuild.xyz)",
     "signing": "NotSupported",
     "account_required": false
+  },
+  {
+    "name": "Zund",
+    "identifier": "zund",
+    "website": "https://zundbuilder.com",
+    "searcher_rpc": "https://zundbuilder.com",
+    "mev_share_rpc": null,
+    "extra_data": "zund",
+    "signing": "Optional",
+    "account_required": false
   }
 ]
