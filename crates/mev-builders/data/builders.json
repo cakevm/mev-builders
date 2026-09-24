@@ -258,5 +258,15 @@
     "extra_data": "Flowbuild (flowbuild.xyz)",
     "signing": "NotSupported",
     "account_required": false
+  },
+  {
+    "name": "Zund",
+    "identifier": "zund",
+    "website": "https://zund.162-55-246-230.sslip.io",
+    "searcher_rpc": "https://zund.162-55-246-230.sslip.io",
+    "mev_share_rpc": null,
+    "extra_data": "zund",
+    "signing": "Optional",
+    "account_required": false
   }
 ]
