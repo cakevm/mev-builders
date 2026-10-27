@@ -258,5 +258,15 @@
     "extra_data": "Flowbuild (flowbuild.xyz)",
     "signing": "NotSupported",
     "account_required": false
+  },
+  {
+    "name": "Aqua Builder",
+    "identifier": "aquabuilder",
+    "website": "https://aquabuilder.online",
+    "searcher_rpc": "https://rpc.aquabuilder.online",
+    "mev_share_rpc": null,
+    "extra_data": "Aqua Builder",
+    "signing": "Optional",
+    "account_required": false
   }
 ]
